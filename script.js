@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentUser = localStorage.getItem('currentUser');
   let currentReg  = localStorage.getItem('currentReg');
 
-  // Si ya hay datos, ocultar overlay y arrancar
+  // Si ya hay datos guardados, saltar el login
   if (currentUser && currentReg) {
     loginOverlay.classList.add('hidden');
     mainContent.classList.remove('hidden');
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initApp();
   }
 
-  // Login
+  // Evento al pulsar “Comenzar”
   startBtn.addEventListener('click', () => {
     const name = usernameInput.value.trim();
     const reg  = regInput.value.trim();
@@ -39,11 +39,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function initApp() {
     const materias = Array.from(document.querySelectorAll('.materia'));
-    // Cargo progreso de este registro
-    const key = `mallaProgress_${currentReg}`;
-    let progress = JSON.parse(localStorage.getItem(key) || '{}');
+    const storageKey = `mallaProgress_${currentReg}`;
+    let progress = JSON.parse(localStorage.getItem(storageKey) || '{}');
 
-    // Aplico estado guardado y desbloqueo inicial
+    // Aplicar estado guardado y desbloquear sin prerrequisitos
     materias.forEach(el => {
       const code = el.dataset.code;
       if (progress[code] === 'aprobada') {
@@ -58,14 +57,14 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Bloqueo/desbloqueo según prerrequisitos
+    // Función que bloquea/desbloquea según prerrequisitos
     function checkPrereqs() {
       materias.forEach(el => {
-        const prereqAttr = el.getAttribute('data-prereq');
-        if (!prereqAttr) {
+        const prereqs = el.getAttribute('data-prereq');
+        if (!prereqs) {
           el.classList.remove('locked');
         } else {
-          const codes = prereqAttr.split(',').map(c => c.trim());
+          const codes = prereqs.split(',').map(c => c.trim());
           const ok = codes.every(code => {
             const req = materias.find(m => m.dataset.code === code);
             return req && req.classList.contains('aprobada');
@@ -80,19 +79,19 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         }
       });
-      localStorage.setItem(key, JSON.stringify(progress));
+      localStorage.setItem(storageKey, JSON.stringify(progress));
     }
 
     checkPrereqs();
 
-    // Manejo de clic
+    // Manejo de clic en materias
     materias.forEach(el => {
       el.addEventListener('click', () => {
         if (el.classList.contains('locked')) return;
-        const nowAprob = el.classList.toggle('aprobada');
+        const approved = el.classList.toggle('aprobada');
         el.classList.toggle('pendiente');
-        progress[el.dataset.code] = nowAprob ? 'aprobada' : 'pendiente';
-        localStorage.setItem(key, JSON.stringify(progress));
+        progress[el.dataset.code] = approved ? 'aprobada' : 'pendiente';
+        localStorage.setItem(storageKey, JSON.stringify(progress));
         checkPrereqs();
       });
     });
