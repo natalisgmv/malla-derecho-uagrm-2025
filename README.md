@@ -1,1 +1,1 @@
-# Malla Interactiva de Derecho - UAGRM
+Plan de estudios Interactiva de Derecho - UAGRM
