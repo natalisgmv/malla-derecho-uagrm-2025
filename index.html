@@ -2,63 +2,129 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Malla Curricular Derecho UAGRM</title>
+  <title>Malla Curricular - Derecho UAGRM</title>
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <h1>Malla Curricular - Derecho UAGRM</h1>
   <div class="malla">
-    <!-- Nivel 1 -->
-    <div class="materia pendiente">DER100<br>Introducción al Derecho</div>
-    <div class="materia pendiente">DER101<br>Derecho Romano e Historia del Derecho Boliviano</div>
-    <div class="materia pendiente">DER102<br>Sociología General y Jurídica</div>
-    <div class="materia pendiente">DER103<br>Ciencia Política e Historia del Pensamiento Polít.</div>
-    <div class="materia pendiente">DER104<br>Derecho Civil I y II (Personas y Bienes)</div>
-    <div class="materia pendiente">DER105<br>Economía Política</div>
-    <div class="materia pendiente">DER106<br>Filosofía General y del Derecho</div>
-    <div class="materia pendiente">DER107<br>Metodología de la Investigación Social y Jurídica</div>
+    <!-- Nivel 1 (siempre visibles) -->
+    <div class="materia pendiente" data-code="DER100">DER100<br>Introducción al Derecho</div>
+    <div class="materia pendiente" data-code="DER101">DER101<br>Derecho Romano e Historia del Derecho Boliviano</div>
+    <div class="materia pendiente" data-code="DER102">DER102<br>Sociología General y Jurídica</div>
+    <div class="materia pendiente" data-code="DER103">DER103<br>Ciencia Política e Historia del Pensamiento Político</div>
+    <div class="materia pendiente" data-code="DER104">DER104<br>Derecho Civil I y II (Personas y Bienes)</div>
+    <div class="materia pendiente" data-code="DER105">DER105<br>Economía Política</div>
+    <div class="materia pendiente" data-code="DER106">DER106<br>Filosofía General y del Derecho</div>
+    <div class="materia pendiente" data-code="DER107">DER107<br>Metodología de la Investigación Social y Jurídica</div>
 
-    <!-- Nivel 2 -->
-    <div class="materia pendiente">DER200<br>Derecho Constitucional y Procedim. Constituc.</div>
-    <div class="materia pendiente">DER201<br>Derechos Humanos, Su Procedim. y Derecho Indígena</div>
-    <div class="materia pendiente">DER202<br>Derecho Administrativo y su Procedimiento</div>
-    <div class="materia pendiente">DER203<br>Derecho Civil III (Obligaciones)</div>
-    <div class="materia pendiente">DER204<br>Medicina Legal</div>
-    <div class="materia pendiente">DER205<br>Derecho Penal I</div>
-    <div class="materia pendiente">DER206<br>Criminología</div>
-    <div class="materia pendiente">DER207<br>Ley del Órgano Judicial, Ética y Taller de Expresión</div>
+    <!-- Nivel 2 (ocultas hasta cumplir prerrequisitos) -->
+    <div class="materia pendiente oculta" data-code="DER200" data-prereq="DER100,DER103">
+      DER200<br>Derecho Constitucional y Proced. Constitucionales
+    </div>
+    <div class="materia pendiente oculta" data-code="DER201" data-prereq="DER101,DER102">
+      DER201<br>Derechos Humanos y Derecho Indígena
+    </div>
+    <div class="materia pendiente oculta" data-code="DER202" data-prereq="DER103">
+      DER202<br>Derecho Administrativo y su Procedimiento
+    </div>
+    <div class="materia pendiente oculta" data-code="DER203" data-prereq="DER104">
+      DER203<br>Derecho Civil III (Obligaciones)
+    </div>
+    <div class="materia pendiente oculta" data-code="DER204" data-prereq="DER104">
+      DER204<br>Medicina Legal
+    </div>
+    <div class="materia pendiente oculta" data-code="DER205" data-prereq="DER104">
+      DER205<br>Derecho Penal I
+    </div>
+    <div class="materia pendiente oculta" data-code="DER206" data-prereq="DER104">
+      DER206<br>Criminología
+    </div>
+    <div class="materia pendiente oculta" data-code="DER207" data-prereq="DER106">
+      DER207<br>Ley del Órgano Judicial, Ética y Expresión
+    </div>
 
     <!-- Nivel 3 -->
-    <div class="materia pendiente">DER300<br>Derecho Laboral, Procedimiento y Práctica Forense</div>
-    <div class="materia pendiente">DER301<br>Derecho Financiero, Tributario, Aduanero y su Proced.</div>
-    <div class="materia pendiente">DER302<br>Derecho del Medio Ambiente y su Procedimiento</div>
-    <div class="materia pendiente">DER303<br>Derecho Civil IV (Contratos)</div>
-    <div class="materia pendiente">DER304<br>Derecho Procesal Civil y Práctica Forense</div>
-    <div class="materia pendiente">DER305<br>Derecho Penal II</div>
-    <div class="materia pendiente">DER306<br>Derecho Procesal Penal y Práctica Forense</div>
+    <div class="materia pendiente oculta" data-code="DER300" data-prereq="DER201">
+      DER300<br>Derecho Laboral y Práctica Forense
+    </div>
+    <div class="materia pendiente oculta" data-code="DER301" data-prereq="DER105">
+      DER301<br>Derecho Financiero, Tributario y Aduanero
+    </div>
+    <div class="materia pendiente oculta" data-code="DER302" data-prereq="DER202">
+      DER302<br>Derecho del Medio Ambiente y su Procedimiento
+    </div>
+    <div class="materia pendiente oculta" data-code="DER303" data-prereq="DER203">
+      DER303<br>Derecho Civil IV (Contratos)
+    </div>
+    <div class="materia pendiente oculta" data-code="DER304" data-prereq="DER203">
+      DER304<br>Derecho Procesal Civil y Forense
+    </div>
+    <div class="materia pendiente oculta" data-code="DER305" data-prereq="DER204,DER205,DER206">
+      DER305<br>Derecho Penal II
+    </div>
+    <div class="materia pendiente oculta" data-code="DER306" data-prereq="DER205,DER206">
+      DER306<br>Derecho Procesal Penal y Forense
+    </div>
 
     <!-- Nivel 4 -->
-    <div class="materia pendiente">DER400<br>Derecho a la Seguridad Social, Proced. y Pract. Forense</div>
-    <div class="materia pendiente">DER401<br>Derecho Comercial y Empresarial</div>
-    <div class="materia pendiente">DER402<br>Derecho Agrario y Proc. Admin. Agrario</div>
-    <div class="materia pendiente">DER403<br>Derecho Civil V (Sucesiones)</div>
-    <div class="materia pendiente">DER404<br>Derecho Bancario, Bursátil y Cooperativo</div>
-    <div class="materia pendiente">DER405<br>Derecho Informático</div>
-    <div class="materia pendiente">DER406<br>Derecho Internacional Público y Privado</div>
-    <div class="materia pendiente">DER407<br>Metodología y Taller de Tesis</div>
+    <div class="materia pendiente oculta" data-code="DER400" data-prereq="DER300">
+      DER400<br>Derecho a la Seguridad Social y Práctica Forense
+    </div>
+    <div class="materia pendiente oculta" data-code="DER401" data-prereq="DER301">
+      DER401<br>Derecho Comercial y Empresarial
+    </div>
+    <div class="materia pendiente oculta" data-code="DER402" data-prereq="DER302">
+      DER402<br>Derecho Agrario y Procedimiento
+    </div>
+    <div class="materia pendiente oculta" data-code="DER403" data-prereq="DER303">
+      DER403<br>Derecho Civil V (Sucesiones)
+    </div>
+    <div class="materia pendiente oculta" data-code="DER404" data-prereq="DER303">
+      DER404<br>Derecho Bancario y Cooperativo
+    </div>
+    <div class="materia pendiente oculta" data-code="DER405" data-prereq="DER303">
+      DER405<br>Derecho Informático
+    </div>
+    <div class="materia pendiente oculta" data-code="DER406" data-prereq="DER305">
+      DER406<br>Derecho Internacional Público y Privado
+    </div>
+    <div class="materia pendiente oculta" data-code="DER407" data-prereq="DER107">
+      DER407<br>Metodología y Taller de Tesis
+    </div>
 
     <!-- Nivel 5 -->
-    <div class="materia pendiente">DER500<br>Derecho Autonómico y Municipal</div>
-    <div class="materia pendiente">DER501<br>Derecho Procesal Agrario y su Proceso Oral</div>
-    <div class="materia pendiente">DER502<br>Derecho Minero y Petrolero</div>
-    <div class="materia pendiente">DER503<br>Derecho de Familia, de la Niñez, Adolescencia y Violencia</div>
-    <div class="materia pendiente">DER504<br>Taller y Práctica Forense Civil</div>
-    <div class="materia pendiente">DER505<br>Taller y Práctica Forense Penal y Sistema Penitenciario</div>
-    <div class="materia pendiente">DER506<br>Métodos Alternativos de Resolución de Conflictos</div>
+    <div class="materia pendiente oculta" data-code="DER500" data-prereq="DER202">
+      DER500<br>Derecho Autonómico y Municipal
+    </div>
+    <div class="materia pendiente oculta" data-code="DER501" data-prereq="DER402">
+      DER501<br>Derecho Procesal Agrario
+    </div>
+    <div class="materia pendiente oculta" data-code="DER502" data-prereq="DER302">
+      DER502<br>Derecho Minero y Petrolero
+    </div>
+    <div class="materia pendiente oculta" data-code="DER503" data-prereq="DER403">
+      DER503<br>Derecho de Familia y Niñez
+    </div>
+    <div class="materia pendiente oculta" data-code="DER504" data-prereq="DER303">
+      DER504<br>Taller Forense Civil
+    </div>
+    <div class="materia pendiente oculta" data-code="DER505" data-prereq="DER305,DER306">
+      DER505<br>Taller Forense Penal
+    </div>
+    <div class="materia pendiente oculta" data-code="DER506" data-prereq="DER407">
+      DER506<br>Métodos Alternativos de Conflictos
+    </div>
 
     <!-- Nivel 6 -->
-    <div class="materia pendiente">GDI001<br>Graduación Directa</div>
-    <div class="materia pendiente">GRL001<br>Modalidad de Graduación</div>
+    <div class="materia pendiente oculta" data-code="GDI001" data-prereq="DER506">
+      GDI001<br>Graduación Directa
+    </div>
+    <div class="materia pendiente oculta" data-code="GRL001" data-prereq="DER407">
+      GRL001<br>Modalidad de Graduación
+    </div>
   </div>
   <script src="script.js"></script>
 </body>
