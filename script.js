@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentUser = localStorage.getItem('currentUser');
   let currentReg  = localStorage.getItem('currentReg');
 
-  // Si ya hay datos guardados, saltar el login
+  // Si ya hay datos guardados, saltamos login
   if (currentUser && currentReg) {
     loginOverlay.classList.add('hidden');
     mainContent.classList.remove('hidden');
@@ -19,12 +19,12 @@ document.addEventListener('DOMContentLoaded', () => {
     initApp();
   }
 
-  // Evento al pulsar “Comenzar”
   startBtn.addEventListener('click', () => {
     const name = usernameInput.value.trim();
     const reg  = regInput.value.trim();
     if (!name || !reg) {
-      return alert('Por favor ingresa Estudiante y Registro.');
+      alert('Por favor ingresa Estudiante y Registro.');
+      return;
     }
     currentUser = name;
     currentReg  = reg;
@@ -39,10 +39,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function initApp() {
     const materias = Array.from(document.querySelectorAll('.materia'));
-    const storageKey = `mallaProgress_${currentReg}`;
-    let progress = JSON.parse(localStorage.getItem(storageKey) || '{}');
+    const key = `mallaProgress_${currentReg}`;
+    let progress = JSON.parse(localStorage.getItem(key) || '{}');
 
-    // Aplicar estado guardado y desbloquear sin prerrequisitos
     materias.forEach(el => {
       const code = el.dataset.code;
       if (progress[code] === 'aprobada') {
@@ -57,7 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Función que bloquea/desbloquea según prerrequisitos
     function checkPrereqs() {
       materias.forEach(el => {
         const prereqs = el.getAttribute('data-prereq');
@@ -79,21 +77,21 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         }
       });
-      localStorage.setItem(storageKey, JSON.stringify(progress));
+      localStorage.setItem(key, JSON.stringify(progress));
     }
 
     checkPrereqs();
 
-    // Manejo de clic en materias
     materias.forEach(el => {
       el.addEventListener('click', () => {
         if (el.classList.contains('locked')) return;
         const approved = el.classList.toggle('aprobada');
         el.classList.toggle('pendiente');
         progress[el.dataset.code] = approved ? 'aprobada' : 'pendiente';
-        localStorage.setItem(storageKey, JSON.stringify(progress));
+        localStorage.setItem(key, JSON.stringify(progress));
         checkPrereqs();
       });
     });
   }
 });
+
