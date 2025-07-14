@@ -7,39 +7,30 @@ document.addEventListener('DOMContentLoaded', () => {
   const usernameDisp  = document.getElementById('usernameDisplay');
   const regDisp       = document.getElementById('regDisplay');
 
-  let currentUser = localStorage.getItem('currentUser');
-  let currentReg  = localStorage.getItem('currentReg');
-
-  // Si ya hay datos guardados, saltamos el login
-  if (currentUser && currentReg) {
-    loginOverlay.classList.add('hidden');
-    mainContent.classList.remove('hidden');
-    usernameDisp.textContent = currentUser;
-    regDisp.textContent = currentReg;
-    initApp();
-  }
+  // Siempre mostramos el login al entrar
+  loginOverlay.classList.remove('hidden');
+  mainContent.classList.add('hidden');
 
   startBtn.addEventListener('click', () => {
-    const name = usernameInput.value.trim();
+    const user = usernameInput.value.trim();
     const reg  = regInput.value.trim();
-    if (!name || !reg) {
+    if (!user || !reg) {
       return alert('Por favor ingresa Estudiante y Registro.');
     }
-    currentUser = name;
-    currentReg  = reg;
-    localStorage.setItem('currentUser', currentUser);
-    localStorage.setItem('currentReg', currentReg);
+    // Ocultamos login y mostramos contenido
+    usernameDisp.textContent = user;
+    regDisp.textContent      = reg;
     loginOverlay.classList.add('hidden');
     mainContent.classList.remove('hidden');
-    usernameDisp.textContent = currentUser;
-    regDisp.textContent = currentReg;
-    initApp();
+
+    // Inicializamos la malla con este usuario/reg
+    initApp(reg);
   });
 
-  function initApp() {
-    const materias = Array.from(document.querySelectorAll('.materia'));
-    const storageKey = `mallaProgress_${currentReg}`;
-    let progress = JSON.parse(localStorage.getItem(storageKey) || '{}');
+  function initApp(registro) {
+    const materias   = Array.from(document.querySelectorAll('.materia'));
+    const storageKey = `mallaProgress_${registro}`;
+    let progress     = JSON.parse(localStorage.getItem(storageKey) || '{}');
 
     // Aplica estado guardado y desbloqueo inicial
     materias.forEach(el => {
@@ -56,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Función de bloqueo/desbloqueo según prerrequisitos
+    // Función que bloquea/desbloquea según prerrequisitos
     function checkPrereqs() {
       materias.forEach(el => {
         const prereqs = el.getAttribute('data-prereq');
@@ -81,9 +72,10 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem(storageKey, JSON.stringify(progress));
     }
 
+    // Primer chequeo
     checkPrereqs();
 
-    // Manejo de clic en materias
+    // Handler de clic en materias
     materias.forEach(el => {
       el.addEventListener('click', () => {
         if (el.classList.contains('locked')) return;
