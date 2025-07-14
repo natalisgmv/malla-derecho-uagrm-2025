@@ -6,7 +6,7 @@ body {
   text-align: center;
 }
 
-/* Overlay de login con escudo de fondo */
+/* Pantalla de login con fondo de escudo */
 #loginOverlay {
   position: fixed;
   top: 0; left: 0;
@@ -17,9 +17,8 @@ body {
   justify-content: center;
   z-index: 1000;
 }
-/* Form-container semitransparente */
 #loginOverlay .form-container {
-  background: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.9);
   padding: 2rem;
   border-radius: 8px;
   max-width: 400px;
@@ -28,7 +27,6 @@ body {
   font-size: 1rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
-  text-align: center;
   line-height: 1.3;
 }
 #loginOverlay label {
@@ -49,7 +47,7 @@ body {
   cursor: pointer;
 }
 
-/* Ocultar con clase */
+/* Ocultar elementos con clase */
 .hidden {
   display: none;
 }
@@ -84,7 +82,7 @@ body {
   font-weight: 500;
 }
 
-/* Bloqueadas */
+/* Materias bloqueadas */
 .materia.locked {
   opacity: 0.4;
   cursor: not-allowed;
