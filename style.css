@@ -1,4 +1,4 @@
-/* Tipografía y fondos */
+/* Tipografía y fondo */
 body {
   font-family: 'Lora', serif;
   background: #fafafa;
@@ -20,7 +20,7 @@ h1 {
   margin: 2rem;
 }
 
-/* Estado de cada materia */
+/* Base de cada materia */
 .materia {
   border: 2px solid #ccc;
   padding: 0.5rem;
@@ -32,23 +32,27 @@ h1 {
   justify-content: center;
   border-radius: 10px;
   cursor: pointer;
-  transition: background 0.3s, border-color 0.3s;
+  transition: background 0.3s, border-color 0.3s, color 0.3s;
   text-align: center;
 }
+
+/* Ocultas hasta cumplir prerrequisitos */
 .materia.oculta {
   display: none;
 }
 
-/* Colores por estado */
+/* Pendiente = sin tachar */
 .materia.pendiente {
   background: #ffe5e5;
   border-color: #e57373;
+  text-decoration: none;
+  color: #000;
 }
-.materia.cursando {
-  background: #fff9c4;
-  border-color: #fdd835;
-}
+
+/* Aprobada = tachada */
 .materia.aprobada {
   background: #c8e6c9;
   border-color: #66bb6a;
+  text-decoration: line-through;
+  color: #555;
 }
