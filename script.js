@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentUser = localStorage.getItem('currentUser');
   let currentReg  = localStorage.getItem('currentReg');
 
-  // Si ya hay datos guardados, saltamos login
+  // Si ya hay datos guardados, saltamos el login
   if (currentUser && currentReg) {
     loginOverlay.classList.add('hidden');
     mainContent.classList.remove('hidden');
@@ -23,8 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const name = usernameInput.value.trim();
     const reg  = regInput.value.trim();
     if (!name || !reg) {
-      alert('Por favor ingresa Estudiante y Registro.');
-      return;
+      return alert('Por favor ingresa Estudiante y Registro.');
     }
     currentUser = name;
     currentReg  = reg;
@@ -39,9 +38,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function initApp() {
     const materias = Array.from(document.querySelectorAll('.materia'));
-    const key = `mallaProgress_${currentReg}`;
-    let progress = JSON.parse(localStorage.getItem(key) || '{}');
+    const storageKey = `mallaProgress_${currentReg}`;
+    let progress = JSON.parse(localStorage.getItem(storageKey) || '{}');
 
+    // Aplica estado guardado y desbloqueo inicial
     materias.forEach(el => {
       const code = el.dataset.code;
       if (progress[code] === 'aprobada') {
@@ -56,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
+    // Función de bloqueo/desbloqueo según prerrequisitos
     function checkPrereqs() {
       materias.forEach(el => {
         const prereqs = el.getAttribute('data-prereq');
@@ -77,21 +78,21 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         }
       });
-      localStorage.setItem(key, JSON.stringify(progress));
+      localStorage.setItem(storageKey, JSON.stringify(progress));
     }
 
     checkPrereqs();
 
+    // Manejo de clic en materias
     materias.forEach(el => {
       el.addEventListener('click', () => {
         if (el.classList.contains('locked')) return;
         const approved = el.classList.toggle('aprobada');
         el.classList.toggle('pendiente');
         progress[el.dataset.code] = approved ? 'aprobada' : 'pendiente';
-        localStorage.setItem(key, JSON.stringify(progress));
+        localStorage.setItem(storageKey, JSON.stringify(progress));
         checkPrereqs();
       });
     });
   }
 });
-
