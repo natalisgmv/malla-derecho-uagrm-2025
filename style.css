@@ -17,7 +17,7 @@ h2 {
   padding-bottom: 8px;
 }
 
-/* 2) Layout de la malla */
+/* 2) Layout */
 .malla section {
   margin-bottom: 2rem;
 }
@@ -29,8 +29,9 @@ h2 {
   padding: 0 1rem;
 }
 
-/* 3) Estilos base de materia */
+/* 3) Base de cada materia */
 .materia {
+  position: relative;
   cursor: pointer;
   width: 160px;
   height: 100px;
@@ -42,36 +43,53 @@ h2 {
   align-items: center;
   justify-content: center;
   text-align: center;
-  transition: background 0.3s, border-color 0.3s, color 0.3s;
+  transition: 
+    background 0.3s, 
+    border-color 0.3s, 
+    color 0.3s, 
+    opacity 0.3s;
   font-weight: 500;
 }
-.materia.oculta {
-  display: none;
+
+/* 4) Bloqueadas (locked) */
+.materia.locked {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+/* Opcional: un icono de candado */
+.materia.locked::after {
+  content: "🔒";
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  font-size: 1rem;
 }
 
-/* 4) Colores por categoría (pendiente) */
+/* 5) Colores (pendiente) */
 .materia.instrumental.pendiente {
-  background: #c8e6c9;  /* verde */
+  background: #c8e6c9;
   border-color: #66bb6a;
 }
 .materia.complementaria.pendiente {
-  background: #ffe0b2;  /* naranja */
+  background: #ffe0b2;
   border-color: #ffb74d;
 }
 .materia.basica-especifica.pendiente {
-  background: #e1bee7;  /* púrpura */
+  background: #e1bee7;
   border-color: #ba68c8;
 }
 .materia.especifica.pendiente {
-  background: #b3e5fc;  /* celeste */
+  background: #b3e5fc;
   border-color: #039be5;
 }
 
-/* 5) Override aprobado */
+/* 6) Aprobadas: colores vivos + tachado */
 .materia.aprobada {
-  background: #66bb6a !important;  /* verde fuerte */
-  border-color: #388e3c !important;
+  /* aquí eliges un verde más vivo o distinto según categoría; 
+     por simplicidad, usamos un único verde vivo */
+  background: #2e7d32 !important;
+  border-color: #1b5e20 !important;
   color: #fff !important;
   text-decoration: line-through;
+  opacity: 1 !important;   /* fuerza que se vea vibrante */
 }
-
