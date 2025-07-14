@@ -6,12 +6,12 @@ body {
   text-align: center;
 }
 
-/* Ocultar con clase */
+/* Ocultar cualquier elemento con .hidden */
 .hidden {
   display: none;
 }
 
-/* Pantalla de login con escudo de fondo */
+/* Pantalla de login con fondo de escudo */
 #loginOverlay {
   position: fixed;
   top: 0; left: 0;
@@ -22,6 +22,11 @@ body {
   justify-content: center;
   z-index: 1000;
 }
+/* Esta es la clave para que desaparezca al añadir .hidden */
+#loginOverlay.hidden {
+  display: none !important;
+}
+
 #loginOverlay .form-container {
   background: rgba(255,255,255,0.9);
   padding: 2rem;
@@ -82,7 +87,7 @@ body {
   font-weight: 500;
 }
 
-/* Bloqueadas */
+/* Materias bloqueadas */
 .materia.locked {
   opacity: 0.4;
   cursor: not-allowed;
@@ -120,4 +125,3 @@ body {
   text-decoration: line-through;
   opacity: 1 !important;
 }
-
