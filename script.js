@@ -1,9 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
   const materias = Array.from(document.querySelectorAll('.materia'));
-  // Cargo el progreso previo (o un objeto vacío)
   let progress = JSON.parse(localStorage.getItem('mallaProgress') || '{}');
 
-  // Aplico el estado guardado a cada materia
+  // 1) Aplica el progreso guardado
   materias.forEach(el => {
     const code = el.dataset.code;
     if (progress[code] === 'aprobada') {
@@ -15,25 +14,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Función que muestra/oculta según prerrequisitos y resetea estados si corresponde
+  // 2) Función que bloquea/desbloquea según prerrequisitos
   function checkPrereqs() {
     materias.forEach(el => {
       const prereq = el.dataset.prereq;
       if (!prereq) {
-        // nivel 1 o sin prerrequisitos: siempre visible
-        el.classList.remove('oculta');
+        // sin prerrequisitos: desbloqueada
+        el.classList.remove('locked');
       } else {
-        // para niveles >1: compruebo todos los códigos
         const codes = prereq.split(',').map(c => c.trim());
         const ok = codes.every(code => {
           const req = materias.find(m => m.dataset.code === code);
           return req && req.classList.contains('aprobada');
         });
         if (ok) {
-          el.classList.remove('oculta');
+          el.classList.remove('locked');
         } else {
-          // oculto y reseteo a pendiente
-          el.classList.add('oculta');
+          // bloquea y resetea su estado a pendiente
+          el.classList.add('locked');
           el.classList.remove('aprobada');
           el.classList.add('pendiente');
           progress[el.dataset.code] = 'pendiente';
@@ -42,13 +40,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Primer chequeo al cargar
+  // Chequeo inicial
   checkPrereqs();
 
-  // Manejador de clic único para alternar pendiente ↔ aprobada
+  // 3) Handler de clic: sólo si NO está locked
   materias.forEach(el => {
     el.addEventListener('click', () => {
-      if (el.classList.contains('oculta')) return; // no clickeable
+      if (el.classList.contains('locked')) return;
+      // toggle aprobado/pendiente
       if (el.classList.contains('aprobada')) {
         el.classList.remove('aprobada');
         el.classList.add('pendiente');
@@ -58,7 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
         el.classList.add('aprobada');
         progress[el.dataset.code] = 'aprobada';
       }
-      // guardo estado y vuelvo a recalcular prerrequisitos
       localStorage.setItem('mallaProgress', JSON.stringify(progress));
       checkPrereqs();
     });
