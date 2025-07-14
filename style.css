@@ -1,58 +1,77 @@
-/* Tipografía y fondo */
+/* 1) Tipografía y reset */
 body {
-  font-family: 'Lora', serif;
+  font-family: 'Montserrat', sans-serif;
   background: #fafafa;
-  text-align: center;
   margin: 0;
+  text-align: center;
 }
 h1 {
-  margin-top: 30px;
-  font-size: 2rem;
   font-weight: 700;
+  margin: 20px 0;
+}
+h2 {
+  margin-top: 40px;
+  font-size: 1.5rem;
+  border-bottom: 2px solid #ddd;
+  display: inline-block;
+  padding-bottom: 8px;
 }
 
-/* Layout de la malla */
+/* 2) Layout de la malla */
+.malla section {
+  margin-bottom: 2rem;
+}
 .malla {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
-  margin: 2rem;
+  padding: 0 1rem;
 }
 
-/* Base de cada materia */
+/* 3) Estilos base de materia */
 .materia {
-  border: 2px solid #ccc;
-  padding: 0.5rem;
+  cursor: pointer;
   width: 160px;
   height: 100px;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background 0.3s, border-color 0.3s, color 0.3s;
   text-align: center;
+  transition: background 0.3s, border-color 0.3s, color 0.3s;
+  font-weight: 500;
 }
-
-/* Ocultas hasta cumplir prerrequisitos */
 .materia.oculta {
   display: none;
 }
 
-/* Pendiente = sin tachar */
-.materia.pendiente {
-  background: #ffe5e5;
-  border-color: #e57373;
-  text-decoration: none;
-  color: #000;
+/* 4) Colores por categoría (pendiente) */
+.materia.instrumental.pendiente {
+  background: #c8e6c9;  /* verde */
+  border-color: #66bb6a;
+}
+.materia.complementaria.pendiente {
+  background: #ffe0b2;  /* naranja */
+  border-color: #ffb74d;
+}
+.materia.basica-especifica.pendiente {
+  background: #e1bee7;  /* púrpura */
+  border-color: #ba68c8;
+}
+.materia.especifica.pendiente {
+  background: #b3e5fc;  /* celeste */
+  border-color: #039be5;
 }
 
-/* Aprobada = tachada */
+/* 5) Override aprobado */
 .materia.aprobada {
-  background: #c8e6c9;
-  border-color: #66bb6a;
+  background: #66bb6a !important;  /* verde fuerte */
+  border-color: #388e3c !important;
+  color: #fff !important;
   text-decoration: line-through;
-  color: #555;
 }
+
