@@ -2,9 +2,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const materias = Array.from(document.querySelectorAll('.materia'));
   let progress = JSON.parse(localStorage.getItem('mallaProgress') || '{}');
 
-  // 1) Aplica el progreso guardado
+  // 1) Aplicar estado guardado y garantizar unlock de sin prerrequisitos
   materias.forEach(el => {
     const code = el.dataset.code;
+    // Estado guardado
     if (progress[code] === 'aprobada') {
       el.classList.add('aprobada');
       el.classList.remove('pendiente');
@@ -12,17 +13,21 @@ document.addEventListener('DOMContentLoaded', () => {
       el.classList.add('pendiente');
       el.classList.remove('aprobada');
     }
+    // Si no tiene data-prereq, quitamos locked
+    if (!el.hasAttribute('data-prereq')) {
+      el.classList.remove('locked');
+    }
   });
 
-  // 2) Función que bloquea/desbloquea según prerrequisitos
+  // 2) Función para bloquear/desbloquear según prerrequisitos
   function checkPrereqs() {
     materias.forEach(el => {
-      const prereq = el.dataset.prereq;
-      if (!prereq) {
-        // sin prerrequisitos: desbloqueada
+      const prereqAttr = el.getAttribute('data-prereq');
+      if (!prereqAttr) {
+        // Sin prerrequisitos: desbloqueada
         el.classList.remove('locked');
       } else {
-        const codes = prereq.split(',').map(c => c.trim());
+        const codes = prereqAttr.split(',').map(c => c.trim());
         const ok = codes.every(code => {
           const req = materias.find(m => m.dataset.code === code);
           return req && req.classList.contains('aprobada');
@@ -30,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (ok) {
           el.classList.remove('locked');
         } else {
-          // bloquea y resetea su estado a pendiente
+          // Bloquear y resetear su estado
           el.classList.add('locked');
           el.classList.remove('aprobada');
           el.classList.add('pendiente');
@@ -40,25 +45,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Chequeo inicial
   checkPrereqs();
 
-  // 3) Handler de clic: sólo si NO está locked
+  // 3) Handler de clic: solo descontpela si NO está locked
   materias.forEach(el => {
     el.addEventListener('click', () => {
       if (el.classList.contains('locked')) return;
-      // toggle aprobado/pendiente
-      if (el.classList.contains('aprobada')) {
-        el.classList.remove('aprobada');
-        el.classList.add('pendiente');
-        progress[el.dataset.code] = 'pendiente';
-      } else {
-        el.classList.remove('pendiente');
-        el.classList.add('aprobada');
-        progress[el.dataset.code] = 'aprobada';
-      }
+      // Alterna aprobado ↔ pendiente
+      const nowAprob = el.classList.toggle('aprobada');
+      el.classList.toggle('pendiente');
+      // Guardar
+      progress[el.dataset.code] = nowAprob ? 'aprobada' : 'pendiente';
       localStorage.setItem('mallaProgress', JSON.stringify(progress));
+      // Rechequear prerrequisitos
       checkPrereqs();
     });
   });
 });
+
