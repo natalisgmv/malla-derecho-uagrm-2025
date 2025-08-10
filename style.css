@@ -1,127 +1,73 @@
-/* Tipografía y reset */
-body {
-  font-family: 'Montserrat', sans-serif;
-  background: #fafafa;
-  margin: 0;
-  text-align: center;
-}
+/* Reset + base */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: "Montserrat", sans-serif; background: #f6f7f9; color: #222; }
+.hidden { display: none !important; }
 
-/* Ocultar cualquier elemento con .hidden */
-.hidden {
-  display: none;
-}
-
-/* Pantalla de login con fondo de escudo */
+/* Login */
 #loginOverlay {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: url('escudo.png') center/cover no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
+  position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,.65); z-index: 100;
 }
-/* Esta es la clave para que desaparezca al añadir .hidden */
-#loginOverlay.hidden {
-  display: none !important;
+.form-container {
+  width: 92%; max-width: 380px; background: #fff; border-radius: 10px;
+  padding: 1.5rem; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,.25);
 }
-
-#loginOverlay .form-container {
-  background: rgba(255,255,255,0.9);
-  padding: 2rem;
-  border-radius: 8px;
-  max-width: 400px;
+.form-container h1 { font-size: 1rem; line-height: 1.4; margin-bottom: 1rem; }
+.form-container label { display: block; text-align: left; font-size: .9rem; margin: .6rem 0 .2rem; }
+.form-container input {
+  width: 100%; padding: .55rem .6rem; border: 1px solid #cfd4da; border-radius: 6px; font-size: .95rem;
 }
-#loginOverlay h1 {
-  font-size: 1rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-  line-height: 1.3;
-}
-#loginOverlay label {
-  display: block;
-  margin: 0.75rem 0;
-  font-weight: 500;
-}
-#loginOverlay input {
-  width: 100%;
-  padding: 0.5rem;
-  margin-top: 0.25rem;
-  font-size: 1rem;
-}
-#loginOverlay button {
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  cursor: pointer;
+.form-container button {
+  margin-top: 1rem; width: 100%; padding: .7rem; border: 0; border-radius: 7px; font-weight: 700;
+  background: #1976d2; color: #fff; cursor: pointer;
 }
 
-/* Layout de la malla */
-.malla section {
-  margin-bottom: 2rem;
-}
-.malla {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-  padding: 0 1rem;
+/* Header */
+#mainHeader { background: #fff; text-align: center; padding: 1rem; box-shadow: 0 1px 6px rgba(0,0,0,.08); }
+#infoBar { color: #555; font-size: .95rem; margin-bottom: .25rem; }
+
+/* Grid */
+#curriculum { padding: 1rem; max-width: 1200px; margin: 0 auto; }
+.year-title { font-weight: 700; margin: 1rem 0 .6rem; color: #39424e; }
+.tiles {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: .75rem;
 }
 
-/* Estilos base de materia */
-.materia {
-  position: relative;
-  cursor: pointer;
-  width: 160px;
-  height: 100px;
-  padding: 0.5rem;
-  border-radius: 8px;
-  border: 2px solid transparent;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  transition: background 0.3s, border-color 0.3s, color 0.3s, opacity 0.3s;
-  font-weight: 500;
+/* Tile (cuadrado) */
+.tile {
+  position: relative; border: 2px solid #707275; border-radius: 8px; background: #ffffff;
+  display: flex; flex-direction: column; aspect-ratio: 1/1; overflow: hidden; cursor: pointer;
+  transition: transform .1s ease;
+}
+.tile:hover { transform: translateY(-2px); }
+.tile.locked { opacity: .35; pointer-events: none; }
+
+/* Franja superior (sigla) */
+.tile-header { padding: .35rem; text-align: center; font-weight: 700; color: #fff; font-size: .9rem; }
+/* Cuerpo (nombre) */
+.tile-body { flex: 1; display: flex; align-items: center; justify-content: center; text-align: center; padding: .5rem; font-size: .86rem; color: #2b2f36; }
+
+/* Colores por categoría */
+.tile[data-type="instrumental"]    .tile-header { background: #2e7d32; } /* verde */
+.tile[data-type="básica"]          .tile-header { background: #7b1fa2; } /* morado */
+.tile[data-type="específica"]      .tile-header { background: #1565c0; } /* azul */
+.tile[data-type="complementaria"]  .tile-header { background: #ef6c00; } /* naranja */
+
+/* Estado aprobada: tono más vivo + tachado fino del ancho exacto */
+.tile.completed .tile-header { filter: brightness(1.15); }
+.tile.completed::after {
+  content: ""; position: absolute; left: 0; top: 50%;
+  width: 100%; height: 3px; background: #c62828;
+  transform: translateY(-50%) rotate(-45deg); transform-origin: center;
 }
 
-/* Materias bloqueadas */
-.materia.locked {
-  opacity: 0.4;
-  cursor: not-allowed;
+/* Modal */
+#congratsModal {
+  position: fixed; inset: 0; background: rgba(0,0,0,.5);
+  display: flex; align-items: center; justify-content: center; z-index: 200;
 }
-.materia.locked::after {
-  content: "🔒";
-  position: absolute;
-  top: 4px; right: 6px;
-  font-size: 1rem;
-}
-
-/* Colores (pendiente) */
-.materia.instrumental.pendiente {
-  background: #c8e6c9;
-  border-color: #66bb6a;
-}
-.materia.complementaria.pendiente {
-  background: #ffe0b2;
-  border-color: #ffb74d;
-}
-.materia.basica-especifica.pendiente {
-  background: #e1bee7;
-  border-color: #ba68c8;
-}
-.materia.especifica.pendiente {
-  background: #b3e5fc;
-  border-color: #039be5;
-}
-
-/* Aprobadas: verde vivo + tachado */
-.materia.aprobada {
-  background: #2e7d32 !important;
-  border-color: #1b5e20 !important;
-  color: #fff !important;
-  text-decoration: line-through;
-  opacity: 1 !important;
+#congratsModal .modal-content {
+  background: #fff; padding: 1.25rem 1.6rem; border-radius: 10px; font-weight: 700; text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
 }
