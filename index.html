@@ -4,52 +4,62 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Malla Curricular Interactiva - Derecho UAGRM 157-1</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:tght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Barra Superior -->
+ 
+  <div class="top-bar">
+    <div class="top-bar-content">
+      <img src="uagrm-escudo_886x1130.png" alt="Logo UAGRM" class="uagrm-logo">
+      <h1 class="uagrm-title">Universidad Autónoma Gabriel René Moreno</h1>
+    </div>
+  </div>
+
   <!-- Pantalla de Login -->
   <div id="loginScreen" class="login-container">
-    <div class="uagrm-header">
-      <!-- ✅ USANDO uagrm-escudo_886x1130.png -->
-      <img src="uagrm-escudo_886x1130.png" alt="Logo UAGRM" class="uagrm-logo">
-      <h1 class="uagrm-title">UNIVERSIDAD AUTÓNOMA GABRIEL RENÉ MORENO</h1>
+    <div class="form-header">
+      <h2 class="form-title">Malla Curricular Interactiva</h2>
+      <p class="form-subtitle">Derecho 157-1</p>
     </div>
-    <h2 class="uagrm-subtitle">Malla Curricular Interactiva - Derecho 157-1</h2>
+
     <div class="input-group">
       <label for="studentName">Nombre del Estudiante</label>
       <input type="text" id="studentName" placeholder="Ej: Juan Pérez" required>
     </div>
+
     <div class="input-group">
       <label for="studentId">Número de Registro</label>
       <input type="text" id="studentId" placeholder="Ej: 123456" required>
     </div>
+
     <button class="login-btn" onclick="login()">INGRESAR</button>
   </div>
 
-  <!-- Contenedor Principal (oculto al inicio) -->
+  <!-- Contenido Principal (oculto al inicio) -->
+ 
   <div id="mainScreen" class="main-container hidden">
     <header>
       <div class="header-content">
-        <!-- ✅ USANDO uagrm-escudo_886x1130.png -->
         <img src="uagrm-escudo_886x1130.png" alt="Logo UAGRM" class="header-logo">
         <div>
-          <h1>  Malla Curricular - Derecho UAGRM 157-1</h1>
+          <h1>🎓 MALLA CURRICULAR - DERECHO UAGRM 157-1</h1>
           <div class="user-info" id="userInfo"></div>
         </div>
       </div>
     </header>
 
     <div class="controls">
-      <button onclick="resetAll()">Reiniciar Progreso</button>
-      <button onclick="showCompleted()">Ver Completadas</button>
-      <button onclick="logout()">Cambiar Usuario</button>
+      <button onclick="resetAll()">REINICIAR PROGRESO</button>
+      <button onclick="showCompleted()">VER COMPLETADAS</button>
+      <button onclick="logout()">CAMBIAR USUARIO</button>
     </div>
 
     <div class="progress-bar">
       <div id="progress" class="progress"></div>
     </div>
-    <div class="status" id="status">Progreso: 0% (0/30)</div>
+    <div class="status" id="status">Progreso: 0% (0/38)</div>
 
     <div id="semester-1" class="semester">
       <div class="semester-title">1° AÑO</div>
@@ -58,36 +68,36 @@
 
     <div id="semester-2" class="semester">
       <div class="semester-title">2° AÑO</div>
-      <div class="subjects" id="subjects-2"></div>
+      <div class="subject" id="subjects-2"></div>
     </div>
 
     <div id="semester-3" class="semester">
       <div class="semester-title">3° AÑO</div>
-      <div class="subjects" id="subjects-3"></div>
+      <div class="subject" id="subject-3"></div>
     </div>
 
     <div id="semester-4" class="semester">
       <div class="semester-title">4° AÑO</div>
-      <div class="subjects" id="subjects-4"></div>
+      <div class="subject" id="subject-4"></div>
     </div>
 
     <div id="semester-5" class="semester">
       <div class="semester-title">5° AÑO</div>
-      <div class="subjects" id="subjects-5"></div>
+      <div class="subject" id="subject-5"></div>
     </div>
 
     <div class="legend">
       <div class="legend-item">
-        <span class="legend-color especificas"></span> Específicas
+        <span class="legend-color especificas"></span> Específica
       </div>
       <div class="legend-item">
-        <span class="legend-color basicas-especificas"></span> Básicas Específicas
+        <span class="legend-color basicas-especificas"></span>Básica Específica
       </div>
       <div class="legend-item">
-        <span class="legend-color basicas-instrumentales"></span> Básicas Instrumentales
+        <span class="legend-color basicas-instrumentale"></span>Vásica Instrumental
       </div>
       <div class="legend-item">
-        <span class="legend-color complementarias"></span> Complementarias
+        <span class="legend-color complementarias"></span>Complementaria
       </div>
     </div>
   </div>
