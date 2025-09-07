@@ -1,14 +1,12 @@
 :root {
   --bg-primary: #ffffff;
   --bg-secondary: #f8f9fa;
-  --text: #333333;
-  --primary: #9B0000;           /* Rojo UAGRM */
-  --secondary: #003366;         /* Azul institucional */
-  --accent: #FFCC00;            /* Dorado */
-  --border: #e0e0e0;
-  --hover-shadow: 0 6px 16px rgba(155, 0, 0, 0.15);
+  --text: #222222;
+  --primary: #003366;
+  --secondary: #FFCC00;
+  --border: #DDDDDD;
+  --hover-shadow: 0 6px 16px rgba(0, 51, 102, 0.15);
   --card-bg: #ffffff;
-
   --especificas: #0055aa;
   --basicas-especificas: #8844aa;
   --basicas-instrumentales: #008888;
@@ -26,88 +24,59 @@ body {
   background-color: var(--bg-primary);
   color: var(--text);
   line-height: 1.6;
+  padding: 0;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-/* --- Barra Superior --- */
-.top-bar {
-  background: var(--primary);
-  color: white;
-  padding: 15px 0;
+/* --- Login Screen --- */
+.login-container {
+  background: var(--card-bg);
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 51, 102, 0.1);
   text-align: center;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  max-width: 500px;
+  width: 90%;
+  border: 1px solid var(--border);
+  background: linear-gradient(135deg, #ffffff, #f8f9fa);
 }
 
-.top-bar-content {
+.uagrm-header {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 15px;
-  max-width: 1200px;
-  margin: auto;
-  padding: 0 20px;
-}
-
-.uagrm-logo-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 80px;
-  height: 80px;
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 3px solid var(--primary);
 }
 
 .uagrm-logo {
-  width: 80px;
-  height: 80px;
-  object-fit: contain;
+  height: 60px;
+  width: auto;
 }
 
 .uagrm-title {
-  font-size: 1.8rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  color: white;
-  text-transform: uppercase;
-  margin: 0;
-}
-
-/* --- Formulario de Login --- */
-.main-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: calc(100vh - 60px);
-  padding: 20px;
-}
-
-.login-form {
-  background: var(--card-bg);
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  padding: 40px;
-  width: 100%;
-  max-width: 500px;
-  text-align: center;
-}
-
-.form-header {
-  margin-bottom: 30px;
-  text-align: left;
-}
-
-.form-title {
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--secondary);
-  margin: 0;
+  color: var(--primary);
   text-transform: uppercase;
   letter-spacing: 1px;
+  margin: 0;
+  text-align: left;
+  line-height: 1.3;
 }
 
-.form-subtitle {
-  font-size: 1rem;
-  color: #666;
-  margin: 5px 0;
+.uagrm-subtitle {
+  font-size: 1.2rem;
+  margin: 25px 0 30px;
+  font-weight: 500;
+  color: var(--text);
+  opacity: 0.9;
 }
 
 .input-group {
@@ -118,8 +87,8 @@ body {
 .input-group label {
   display: block;
   margin-bottom: 8px;
-  font-weight: 500;
-  color: var(--secondary);
+  font-weight: 600;
+  color: var(--primary);
   font-size: 0.95rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -127,8 +96,8 @@ body {
 
 .input-group input {
   width: 100%;
-  padding: 12px 16px;
-  border: 1px solid var(--border);
+  padding: 14px 16px;
+  border: 2px solid var(--border);
   background: #fff;
   color: var(--text);
   border-radius: 8px;
@@ -139,23 +108,25 @@ body {
 
 .input-group input:focus {
   outline: none;
-  border-color: var(--secondary);
+  border-color: var(--primary);
+  background: #f9f9f9;
   box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.1);
 }
 
 .login-btn {
   padding: 14px 32px;
-  background: var(--secondary);
-  color: white;
+  background: var(--primary);
+  color: #ffffff;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   font-size: 18px;
   font-weight: 600;
   transition: all 0.3s ease;
-  width: 100%;
+  margin-top: 10px;
   text-transform: uppercase;
   letter-spacing: 1px;
+  width: 100%;
   box-shadow: 0 4px 8px rgba(0, 51, 102, 0.2);
 }
 
@@ -165,12 +136,18 @@ body {
   box-shadow: 0 6px 12px rgba(0, 51, 102, 0.25);
 }
 
-/* --- Main Screen (después de login) --- */
+/* --- Main Screen --- */
 .hidden {
   display: none;
 }
 
-/* --- Header del contenido principal --- */
+.main-container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
 header {
   text-align: center;
   padding: 25px 0;
@@ -225,7 +202,7 @@ header h1 {
 button {
   padding: 12px 24px;
   background: var(--primary);
-  color: white;
+  color: #ffffff;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -237,7 +214,7 @@ button {
 }
 
 button:hover {
-  background: #7c0000;
+  background: #002244;
   transform: translateY(-2px);
   box-shadow: var(--hover-shadow);
 }
@@ -406,30 +383,35 @@ button:hover {
 
 /* --- Responsive --- */
 @media (max-width: 768px) {
-  .top-bar-content {
+  .uagrm-header,
+  .header-content {
     flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .uagrm-logo,
+  .header-logo {
+    height: 50px;
+  }
+
+  .uagrm-title,
+  header h1 {
+    font-size: 1.3rem;
     text-align: center;
   }
 
-  .uagrm-logo-container {
-    margin-bottom: 10px;
-  }
-
-  .uagrm-title {
-    font-size: 1.4rem;
-  }
-
-  .login-form {
+  .login-container {
     padding: 30px 20px;
-  }
-
-  .controls {
-    flex-direction: column;
-    gap: 10px;
   }
 
   .subject-name {
     min-height: auto;
     padding: 4px 0;
+  }
+
+  .controls {
+    flex-direction: column;
+    gap: 10px;
   }
 }
