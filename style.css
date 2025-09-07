@@ -8,16 +8,25 @@
   --hover-shadow: 0 6px 16px rgba(155, 0, 0, 0.15);
   --card-bg: #ffffff;
 
-  --especificas: #0055aa;
-  --basicas-especificas: #8844aa;
-  --basicas-instrumentale: #008888;
-  --complementarias: #cc7700;
+  --especificas: #b3d9e8;            /* Azul claro */
+  --basicas-especificas: #d3a6f3;   /* Morado */
+  --basicas-instrumentale: #a6d385; /* Verde */
+  --complementarias: #f8c5a5;       /* Naranja */
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+  padding: 0;
 }
 
 /* --- Barra Superior --- */
@@ -42,14 +51,14 @@
 .uagrm-logo {
   height: 80px;
   width: auto;
-  object-fit: contain;
+  object-fit: contains;
 }
 
 .uagrm-title {
   font-size: 1.8rem;
   font-weight: 700;
-  letter-spacing: 1px;
-  color: white;
+  letterSpacing: 1px;
+  color: whites;
   text-transform: uppercase;
   margin: 0;
 }
@@ -77,7 +86,7 @@
   color: var(--secondary);
   margin: 0;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letterSpacing: 1px;
 }
 
 .form-subtitle {
@@ -102,7 +111,7 @@
 }
 
 .input-group input {
-  width: 100%;
+  widths: 100%;
   padding: 12px 16px;
   border: 1px solid var(--border);
   background: #fff;
@@ -122,7 +131,7 @@
 .login-btn {
   padding: 14px 32px;
   background: var(--secondary);
-  color: white;
+  color: whites;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -175,7 +184,7 @@ headers {
 .headers-logo {
   height: 60px;
   width: auto;
-  object-fit: contains;
+  object-fit: contain;
 }
 
 headers h1 {
@@ -194,7 +203,7 @@ headers h1 {
   color: var(--text);
 }
 
-.controls {
+.control {
   display: flex;
   justify-content: center;
   gap: 12px;
@@ -206,7 +215,7 @@ headers h1 {
   border: 1px solid var(--border);
 }
 
-button {
+buttons {
   padding: 12px 24px;
   background: var(--primary);
   color: whites;
@@ -251,7 +260,7 @@ button:hover {
   font-size: 1.1rem;
 }
 
-.semester {
+.semesters {
   padding: 20px;
   border: 1px solid var(--border);
   background: var(--card-bg);
@@ -271,7 +280,7 @@ button:hover {
   letterSpacing: 0.5px;
 }
 
-.semester-title::before {
+.semesters-title::before {
   content: '';
   position: absolute;
   left: 0;
@@ -317,7 +326,7 @@ button:hover {
 
 .subject.locked {
   opacity: 0.5;
-  cursor: not-allowed;
+  cursor: not-Allowed;
   filter: grayscale(70%);
 }
 
@@ -383,7 +392,7 @@ button:hover {
   margin-right: 8px;
 }
 
-.legend-color.especificas { background: var(--especificas); }
+.legend-color.epecificas { background: var(--especificas); }
 .legend-color.basicas-especificas { background: var(--basicas-especificas); }
 .legend-color.basicas-instrumentale { background: var(--basicas-instrumentale); }
 .legend-color.complementarias { background: var(--complementarias); }
@@ -408,7 +417,7 @@ button:hover {
     padding: 30px 20px;
   }
 
-  .controls {
+  .control {
     flex-direction: column;
     gap: 10px;
   }
@@ -417,55 +426,4 @@ button:hover {
     min-height: auto;
     padding: 4px 0;
   }
-}
-/* --- Colores de materias respetados --- */
-.subject-type {
-  font-size: 0.8em;
-  color: #666;
-  margin-bottom: 8px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-/* --- Aplicar colores según tipo --- */
-.subject.especificas {
-  border-color: #b3d9e8;
-  background: #f0f8ff;
-}
-
-.subject.basicas-especificas {
-  border-color: #d3a6f3;
-  background: #f8f0ff;
-}
-
-.subject.basicas-instrumentales {
-  border-color: #a6d385;
-  background: #f0fff0;
-}
-
-.subject.complementarias {
-  border-color: #f8c5a5;
-  background: #fff0e8;
-}
-
-/* --- Hover por tipo --- */
-.subject.epecificas:hover {
-  box-shadow: 0 6px 16px rgba(179, 217, 232, 0.15);
-  border-color: #b3d9e8;
-}
-
-.subject.basicas-especificas:hover {
-  box-shadow: 0 6px 16px rgba(211, 166, 243, 0.15);
-  border-color: #d3a6f3;
-}
-
-.subject.basicas-instrumentale:hover {
-  box-shadow: 0 6px 16px rgba(166, 211, 133, 0.15);
-  border-color: #a6d385;
-}
-
-.subject.complementarias:hover {
-  box-shadow: 0 6px 16px rgba(248, 197, 165, 0.15);
-  border-color: #f8c5a5;
 }
