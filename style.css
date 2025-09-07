@@ -418,3 +418,54 @@ button:hover {
     padding: 4px 0;
   }
 }
+/* --- Colores de materias respetados --- */
+.subject-type {
+  font-size: 0.8em;
+  color: #666;
+  margin-bottom: 8px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* --- Aplicar colores según tipo --- */
+.subject.especificas {
+  border-color: #b3d9e8;
+  background: #f0f8ff;
+}
+
+.subject.basicas-especificas {
+  border-color: #d3a6f3;
+  background: #f8f0ff;
+}
+
+.subject.basicas-instrumentales {
+  border-color: #a6d385;
+  background: #f0fff0;
+}
+
+.subject.complementarias {
+  border-color: #f8c5a5;
+  background: #fff0e8;
+}
+
+/* --- Hover por tipo --- */
+.subject.epecificas:hover {
+  box-shadow: 0 6px 16px rgba(179, 217, 232, 0.15);
+  border-color: #b3d9e8;
+}
+
+.subject.basicas-especificas:hover {
+  box-shadow: 0 6px 16px rgba(211, 166, 243, 0.15);
+  border-color: #d3a6f3;
+}
+
+.subject.basicas-instrumentale:hover {
+  box-shadow: 0 6px 16px rgba(166, 211, 133, 0.15);
+  border-color: #a6d385;
+}
+
+.subject.complementarias:hover {
+  box-shadow: 0 6px 16px rgba(248, 197, 165, 0.15);
+  border-color: #f8c5a5;
+}
