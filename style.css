@@ -1,18 +1,16 @@
 :root {
-  --bg-primary: #f8f9fa;        /* Fondo claro y limpio */
-  --bg-secondary: #ffffff;      /* Fondo de tarjetas */
-  --text: #212529;              /* Texto oscuro, legible */
-  --primary: #2c3e50;           /* Azul profundo elegante (para botones, títulos, bordes) */
-  --secondary: #e74c3c;         /* Rojo suave (para alertas o énfasis - opcional) */
-  --border: #e0e0e0;            /* Bordes grises suaves */
-  --hover-shadow: 0 6px 16px rgba(44, 62, 80, 0.1); /* Sombra sutil y moderna */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --text: #222222;
+  --primary: #003366;
+  --secondary: #FFCC00;
+  --border: #DDDDDD;
+  --hover-shadow: 0 6px 16px rgba(0, 51, 102, 0.15);
   --card-bg: #ffffff;
-
-  /* Colores de materias — actualizados para combinar con la nueva paleta */
-  --especificas: #3498db;       /* Azul claro profesional */
-  --basicas-especificas: #9b59b6; /* Morado suave y elegante */
-  --basicas-instrumentales: #1abc9c; /* Verde turquesa vibrante */
-  --complementarias: #f39c12;   /* Dorado/naranja cálido */
+  --especificas: #0055aa;
+  --basicas-especificas: #8844aa;
+  --basicas-instrumentales: #008888;
+  --complementarias: #cc7700;
 }
 
 * {
@@ -38,7 +36,7 @@ body {
   background: var(--card-bg);
   padding: 40px;
   border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(44, 62, 80, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 51, 102, 0.1);
   text-align: center;
   max-width: 500px;
   width: 90%;
@@ -50,6 +48,8 @@ body {
   margin-bottom: 5px;
   font-weight: 700;
   color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .login-container h2 {
@@ -88,7 +88,7 @@ body {
   outline: none;
   border-color: var(--primary);
   background: #f9f9f9;
-  box-shadow: 0 0 0 3px rgba(44, 62, 80, 0.1);
+  box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.1);
 }
 
 .login-btn {
@@ -102,10 +102,12 @@ body {
   font-weight: 600;
   transition: all 0.3s ease;
   margin-top: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .login-btn:hover {
-  background: #1a2530;
+  background: #002244;
   transform: translateY(-2px);
   box-shadow: var(--hover-shadow);
 }
@@ -129,6 +131,7 @@ header h1 {
   font-weight: 700;
   letter-spacing: 1px;
   color: var(--primary);
+  text-transform: uppercase;
 }
 
 .user-info {
@@ -160,10 +163,12 @@ button {
   font-size: 16px;
   font-weight: 500;
   transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 button:hover {
-  background: #1a2530;
+  background: #002244;
   transform: translateY(-2px);
   box-shadow: var(--hover-shadow);
 }
@@ -209,6 +214,8 @@ button:hover {
   margin-bottom: 15px;
   padding-left: 10px;
   position: relative;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .semester-title::before {
@@ -250,7 +257,7 @@ button:hover {
 }
 
 .subject.completed {
-  background: #f0f8f0;
+  background: #f0f8ff;
   border-color: var(--basicas-instrumentales);
   opacity: 0.95;
 }
@@ -263,12 +270,12 @@ button:hover {
 
 .subject.completed .subject-name {
   text-decoration: line-through;
-  color: #6c757d;
+  color: #666;
 }
 
 .subject-type {
   font-size: 0.8em;
-  color: #6c757d;
+  color: #666;
   margin-bottom: 8px;
   font-weight: 500;
   text-transform: uppercase;
