@@ -415,3 +415,25 @@ button:hover {
     gap: 10px;
   }
 }
+/* --- Ajuste para logo vertical --- */
+.uagrm-logo {
+  height: 80px;
+  width: auto;
+  object-fit: contain;
+}
+
+.header-logo {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Si el logo se ve demasiado grande, usa esta versión más compacta */
+@media (max-width: 768px) {
+  .uagrm-logo {
+    height: 60px;
+  }
+  .header-logo {
+    height: 50px;
+  }
+}
