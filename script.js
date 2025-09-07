@@ -107,8 +107,7 @@ function renderMaterias() {
     const subject = document.createElement('div');
     subject.className = `subject ${completadas.has(materia.sigla) ? 'completed' : ''}`;
     subject.dataset.sigla = materia.sigla;
-
-    subject.style.borderColor = getColor(materia.tipo);
+    subject.dataset.tipo = materia.tipo; // <-- ¡ESTO ES CLAVE!
 
     subject.innerHTML = `
       <div class="subject-type">${getTipoNombre(materia.tipo)}</div>
@@ -167,16 +166,6 @@ function showCompleted() {
 }
 
 // --- Helpers ---
-function getColor(tipo) {
-  switch (tipo) {
-    case "especificas": return "var(--especificas)";
-    case "basicas-especificas": return "var(--basicas-especificas)";
-    case "basicas-instrumentales": return "var(--basicas-instrumentales)";
-    case "complementarias": return "var(--complementarias)";
-    default: return "var(--border)";
-  }
-}
-
 function getTipoNombre(tipo) {
   switch (tipo) {
     case "especificas": return "ESPECÍFICAS";
