@@ -1,165 +1,188 @@
-// === PLAN DERECHO (AÑOS 1–5) ===
-// NOTA: Se corrigió DER404 -> prereq SOLO 'DER202'. También se ajustó DER301 -> 'DER105' (Financiero desbloqueado por Economía Política),
-// y DER306 -> 'DER205' (Procesal Penal requiere Penal I). Si algún otro requisito difiere, dime y lo ajusto igual de rápido.
+// --- Datos de materias ---
+const materias = [
+  { sigla: "DER100", nombre: "INTRODUCCIÓN AL DERECHO", creditos: 8, tipo: "basicas-instrumentales", prereq: [], semestre: 1 },
+  { sigla: "DER101", nombre: "DERECHO ROMANO E HIST. DEL DER. BOL.", creditos: 8, tipo: "basicas-instrumentales", prereq: [], semestre: 1 },
+  { sigla: "DER102", nombre: "SOCILOGÍA GENERAL Y JURÍDICA", creditos: 6, tipo: "basicas-instrumentales", prereq: [], semestre: 1 },
+  { sigla: "DER103", nombre: "CIENCIA POLÍTICA E HIST. DEL PENS. POLÍTICO", creditos: 6, tipo: "basicas-instrumentales", prereq: [], semestre: 1 },
+  { sigla: "DER104", nombre: "DERECHO CIVIL I Y II (Personas y Derechos Reales)", creditos: 6, tipo: "basicas-instrumentales", prereq: [], semestre: 1 },
+  { sigla: "DER105", nombre: "ECONOMÍA POLÍTICA", creditos: 6, tipo: "complementarias", prereq: [], semestre: 1 },
+  { sigla: "DER106", nombre: "FILOSOFÍA GENERAL Y DEL DERECHO", creditos: 6, tipo: "basicas-instrumentales", prereq: [], semestre: 1 },
+  { sigla: "DER107", nombre: "METODOLOGÍA DE INVESTIGACIÓN SOCIAL Y JURÍDICA", creditos: 8, tipo: "basicas-instrumentales", prereq: [], semestre: 1 },
 
-const COURSES = [
-  // Año 1
-  { id:"DER100", name:"Introducción al Derecho", year:1, type:"instrumental",   prereq:[] },
-  { id:"DER101", name:"Derecho Romano e Historia del Derecho", year:1, type:"instrumental",   prereq:[] },
-  { id:"DER102", name:"Sociología General y Jurídica", year:1, type:"instrumental",   prereq:[] },
-  { id:"DER103", name:"Ciencia Política e Historia del Pensamiento", year:1, type:"instrumental",   prereq:[] },
-  { id:"DER104", name:"Derecho Civil I y II", year:1, type:"básica",   prereq:[] },
-  { id:"DER105", name:"Economía Política", year:1, type:"complementaria",   prereq:[] },
-  { id:"DER106", name:"Filosofía General y del Derecho", year:1, type:"básica",   prereq:[] },
-  { id:"DER107", name:"Metodología de la Investigación Social y Jurídica", year:1, type:"básica",   prereq:[] },
+  { sigla: "DER200", nombre: "DERECHO CONSTITUCIONAL Y PROC. CONST.", creditos: 8, tipo: "especificas", prereq: ["DER100", "DER103"], semestre: 2 },
+  { sigla: "DER201", nombre: "DERECHOS HUMANOS, SU PROCEDIMIENTO Y DERECHO INDÍGENA", creditos: 8, tipo: "complementarias", prereq: ["DER101", "DER102"], semestre: 2 },
+  { sigla: "DER202", nombre: "DERECHO ADMINISTRATIVO Y SU PROCEDIMIENTO", creditos: 8, tipo: "basicas-especificas", prereq: ["DER104"], semestre: 2 },
+  { sigla: "DER203", nombre: "DERECHO CIVIL III (OBLIGACIONES)", creditos: 8, tipo: "especificas", prereq: ["DER104"], semestre: 2 },
+  { sigla: "DER204", nombre: "MEDICINA LEGAL", creditos: 8, tipo: "especificas", prereq: ["DER104"], semestre: 2 },
+  { sigla: "DER205", nombre: "DERECHO PENAL I", creditos: 8, tipo: "especificas", prereq: ["DER106"], semestre: 2 },
+  { sigla: "DER206", nombre: "CRIMINOLOGÍA", creditos: 8, tipo: "especificas", prereq: ["DER102"], semestre: 2 },
+  { sigla: "DER207", nombre: "LEY DEL ÓRGANO JUDICIAL, ÉTICA, TALLER DE EXPRESIÓN ORAL Y ESCRITA", creditos: 8, tipo: "especificas", prereq: ["DER106"], semestre: 2 },
 
-  // Año 2
-  { id:"DER200", name:"Derecho Constitucional y Procedimientos", year:2, type:"específica", prereq:["DER100","DER101","DER102","DER103"] },
-  { id:"DER201", name:"Derechos Humanos y Derecho Indígena", year:2, type:"específica", prereq:["DER100"] },
-  { id:"DER202", name:"Derecho Administrativo y Procedimiento", year:2, type:"específica", prereq:["DER100"] },
-  { id:"DER203", name:"Derecho Civil III (Obligaciones)", year:2, type:"básica", prereq:["DER104"] },
-  { id:"DER204", name:"Medicina Legal", year:2, type:"específica", prereq:["DER104"] },
-  { id:"DER205", name:"Derecho Penal I", year:2, type:"específica", prereq:["DER105"] },
-  { id:"DER206", name:"Criminología", year:2, type:"específica", prereq:["DER105"] },
-  { id:"DER207", name:"Órgano Judicial y Expresión", year:2, type:"complementaria", prereq:["DER106"] },
+  { sigla: "DER300", nombre: "DERECHO LABORAL, SU PROCEDIMIENTO Y PRÁCT. FORENSE", creditos: 6, tipo: "especificas", prereq: ["DER201"], semestre: 3 },
+  { sigla: "DER301", nombre: "DERECHO FINANCIERO, TRIBUTARIO, ADUANERO Y SU PROCEDIMIENTO", creditos: 6, tipo: "especificas", prereq: ["DER105"], semestre: 3 },
+  { sigla: "DER302", nombre: "DERECHO DEL MEDIO AMBIENTE Y SU PROCEDIMIENTO", creditos: 6, tipo: "especificas", prereq: ["DER200"], semestre: 3 },
+  { sigla: "DER303", nombre: "DERECHO CIVIL IV (CONTRATOS)", creditos: 8, tipo: "especificas", prereq: ["DER203"], semestre: 3 },
+  { sigla: "DER304", nombre: "DERECHO PROCESAL CIVIL Y PRÁCT. FORENSE", creditos: 10, tipo: "especificas", prereq: ["DER203"], semestre: 3 },
+  { sigla: "DER305", nombre: "DERECHO PENAL II", creditos: 8, tipo: "especificas", prereq: ["DER204", "DER205"], semestre: 3 },
+  { sigla: "DER306", nombre: "DERECHO PROCESAL PENAL Y PRÁCT. FORENSE", creditos: 10, tipo: "especificas", prereq: ["DER205", "DER206"], semestre: 3 },
 
-  // Año 3
-  { id:"DER300", name:"Derecho Laboral y Forense", year:3, type:"específica", prereq:["DER200"] },
-  { id:"DER301", name:"Derecho Financiero, Tributario y Aduanero", year:3, type:"específica", prereq:["DER105"] }, // <- Fin por DER105
-  { id:"DER302", name:"Derecho del Medio Ambiente y Procedimiento", year:3, type:"específica", prereq:["DER202"] },
-  { id:"DER303", name:"Derecho Civil IV (Contratos)", year:3, type:"básica", prereq:["DER203"] },
-  { id:"DER304", name:"Derecho Procesal Civil y Forense", year:3, type:"específica", prereq:["DER203"] },
-  { id:"DER305", name:"Derecho Penal II", year:3, type:"básica", prereq:["DER205"] },
-  { id:"DER306", name:"Derecho Procesal Penal y Forense", year:3, type:"específica", prereq:["DER205"] }, // <- por Penal I
+  { sigla: "DER400", nombre: "DERECHO A LA SEGURIDAD SOCIAL, SUPROC. Y PRÁCT. FORENSE", creditos: 6, tipo: "especificas", prereq: ["DER300"], semestre: 4 },
+  { sigla: "DER401", nombre: "DERECHO COMERCIAL Y EMPRESARIAL", creditos: 8, tipo: "basicas-especificas", prereq: ["DER301"], semestre: 4 },
+  { sigla: "DER402", nombre: "DERECHO AGRARIO Y PROC. ADM. AGRARIO", creditos: 6, tipo: "basicas-especificas", prereq: ["DER302"], semestre: 4 },
+  { sigla: "DER403", nombre: "DERECHO CIVIL V (SUCESIONES)", creditos: 8, tipo: "especificas", prereq: ["DER303"], semestre: 4 },
+  { sigla: "DER404", nombre: "DERECHO BANCARIO, BURSÁTIL Y COOPERATIVO", creditos: 6, tipo: "basicas-especificas", prereq: ["DER202"], semestre: 4 },
+  { sigla: "DER405", nombre: "DERECHO INFORMÁTICO", creditos: 6, tipo: "especificas", prereq: ["DER303"], semestre: 4 },
+  { sigla: "DER406", nombre: "DERECHO INTERNACIONAL PÚBLICO Y PRIVADO", creditos: 8, tipo: "basicas-especificas", prereq: ["DER305"], semestre: 4 },
+  { sigla: "DER407", nombre: "METODOLOGÍA Y TALLER DE TESIS", creditos: 8, tipo: "basicas-especificas", prereq: ["DER107"], semestre: 4 },
 
-  // Año 4
-  { id:"DER400", name:"Derecho a la Seguridad Social, Proc. y Práctica Forense", year:4, type:"específica", prereq:["DER300"] },
-  { id:"DER401", name:"Derecho Comercial y Empresarial", year:4, type:"específica", prereq:["DER301"] },
-  { id:"DER402", name:"Derecho Agrario y Procedimiento", year:4, type:"específica", prereq:["DER302"] },
-  { id:"DER403", name:"Derecho Civil V (Sucesiones)", year:4, type:"básica", prereq:["DER303"] },
-  { id:"DER404", name:"Derecho Bancario, Bursátil y Cooperativo", year:4, type:"específica", prereq:["DER202"] }, // <- CORREGIDO
-  { id:"DER405", name:"Derecho Informático", year:4, type:"específica", prereq:["DER304"] },
-  { id:"DER406", name:"Derecho Internacional Público y Privado", year:4, type:"específica", prereq:["DER305","DER306"] },
-  { id:"DER407", name:"Metodología y Taller de Tesis", year:4, type:"complementaria", prereq:["DER107"] },
-
-  // Año 5
-  { id:"DER500", name:"Derecho Autonómico y Municipal", year:5, type:"complementaria", prereq:["DER202"] },
-  { id:"DER501", name:"Derecho Procesal Agrario y Proceso Oral", year:5, type:"específica", prereq:["DER402"] },
-  { id:"DER502", name:"Derecho Minero y Petrolero", year:5, type:"específica", prereq:["DER302"] },
-  { id:"DER503", name:"Derecho de Familia, Niñez y Adolescencia", year:5, type:"específica", prereq:["DER403"] },
-  { id:"DER504", name:"Taller y Práctica Forense Civil", year:5, type:"específica", prereq:["DER303"] },
-  { id:"DER505", name:"Taller y Práctica Forense Penal", year:5, type:"específica", prereq:["DER306"] },
-  { id:"DER506", name:"Métodos Alternativos de Resolución de Conflictos", year:5, type:"complementaria", prereq:["DER407"] }
+  { sigla: "DER500", nombre: "DERECHO AUTONÓMICO Y MUNICIPAL", creditos: 6, tipo: "especificas", prereq: ["DER202"], semestre: 5 },
+  { sigla: "DER501", nombre: "DERECHO PROCESAL AGRARIO Y SU PROCESO ORAL", creditos: 6, tipo: "especificas", prereq: ["DER402"], semestre: 5 },
+  { sigla: "DER502", nombre: "DERECHO MINERO Y PETROLERO", creditos: 8, tipo: "basicas-especificas", prereq: ["DER302"], semestre: 5 },
+  { sigla: "DER503", nombre: "DERECHO DE FAMILIA, DE LA NIÑEZ, ADOLESCENCIA Y VIOLENCIA", creditos: 8, tipo: "especificas", prereq: ["DER403"], semestre: 5 },
+  { sigla: "DER504", nombre: "TALLER Y PRÁCTICA FORENSE CIVIL", creditos: 6, tipo: "especificas", prereq: ["DER303"], semestre: 5 },
+  { sigla: "DER505", nombre: "TALLER Y PRÁCT. FORENSE PENAL Y SISTEMA PENITENCIARIO", creditos: 6, tipo: "especificas", prereq: ["DER304", "DER305", "DER406"], semestre: 5 },
+  { sigla: "DER506", nombre: "MÉTODOS ALTERNATIVOS DE RESOLUCIÓN DE CONFLICTOS", creditos: 6, tipo: "complementarias", prereq: ["DER407"], semestre: 5 }
 ];
 
-// === Estado y persistencia ===
-let COMPLETED = new Set();       // ids aprobadas
-let STORAGE_KEY = "";            // malla_<registro>
+let completadas = new Set();
+const totalMaterias = materias.length;
+let currentUser = null;
 
-// Mapa de dependencias para cascada (padre -> [hijos])
-const CHILDREN = {};
-COURSES.forEach(c => c.prereq.forEach(p => {
-  (CHILDREN[p] ||= []).push(c.id);
-}));
+// --- Login ---
+function login() {
+  const name = document.getElementById('studentName').value.trim();
+  const id = document.getElementById('studentId').value.trim();
 
-// === Utilidades de UI ===
-const $ = s => document.querySelector(s);
-const $$ = s => [...document.querySelectorAll(s)];
+  if (!name || !id) {
+    alert("Por favor, completa todos los campos.");
+    return;
+  }
 
-function save() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify([...COMPLETED]));
+  currentUser = { name, id };
+  document.getElementById('userInfo').textContent = `👤 ${name} | 🆔 ${id}`;
+
+  // Cargar progreso guardado
+  const savedProgress = localStorage.getItem(`progress_${id}`);
+  if (savedProgress) {
+    completadas = new Set(JSON.parse(savedProgress));
+  } else {
+    completadas = new Set();
+  }
+
+  // Mostrar malla
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('mainScreen').style.display = 'block';
+
+  renderMaterias();
+  updateProgress();
 }
-function load() {
-  const raw = localStorage.getItem(STORAGE_KEY);
-  COMPLETED = new Set(raw ? JSON.parse(raw) : []);
+
+// --- Logout ---
+function logout() {
+  saveProgress();
+  completadas.clear();
+  currentUser = null;
+  document.getElementById('mainScreen').style.display = 'none';
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('studentName').value = '';
+  document.getElementById('studentId').value = '';
 }
 
-// Desmarca en cascada todas las dependientes (DFS)
-function unapproveCascade(rootId) {
-  const stack = [rootId];
-  while (stack.length) {
-    const cur = stack.pop();
-    (CHILDREN[cur] || []).forEach(ch => {
-      if (COMPLETED.has(ch)) {
-        COMPLETED.delete(ch);
-        stack.push(ch);
-      }
-    });
+// --- Guardar progreso ---
+function saveProgress() {
+  if (currentUser) {
+    localStorage.setItem(`progress_${currentUser.id}`, JSON.stringify([...completadas]));
   }
 }
 
-// ¿Esta materia está desbloqueada? => todos sus prereqs aprobados
-function isUnlocked(course) {
-  return course.prereq.every(p => COMPLETED.has(p));
-}
+// --- Renderizar materias ---
+function renderMaterias() {
+  const semestres = document.querySelectorAll('.subjects');
+  semestres.forEach(sem => sem.innerHTML = '');
 
-// Render por año
-function render() {
-  $$(".tiles").forEach(cont => {
-    const year = Number(cont.dataset.year);
-    cont.innerHTML = "";
-    COURSES.filter(c => c.year === year).forEach(c => {
-      const tile = document.createElement("div");
-      tile.className = "tile";
-      tile.dataset.type = c.type;
+  materias.forEach(materia => {
+    const container = document.getElementById(`subjects-${materia.semestre}`);
+    if (!container) return;
 
-      const done = COMPLETED.has(c.id);
-      const unlocked = done || isUnlocked(c);
+    const subject = document.createElement('div');
+    subject.className = `subject ${completadas.has(materia.sigla) ? 'completed' : ''}`;
+    subject.dataset.sigla = materia.sigla;
 
-      if (done) tile.classList.add("completed");
-      if (!unlocked) tile.classList.add("locked");
+    subject.style.borderColor = getColor(materia.tipo);
 
-      tile.innerHTML = `
-        <div class="tile-header">${c.id}</div>
-        <div class="tile-body">${c.name}</div>
-      `;
+    subject.innerHTML = `
+      <div class="subject-type">${getTipoNombre(materia.tipo)}</div>
+      <div class="subject-code">${materia.sigla}</div>
+      <div class="subject-name">${materia.nombre}</div>
+      <div class="subject-credits">${materia.creditos} cr.</div>
+    `;
 
-      tile.addEventListener("click", () => {
-        if (tile.classList.contains("locked")) return;
+    if (materia.prereq.every(pr => completadas.has(pr)) || materia.prereq.length === 0) {
+      subject.onclick = () => toggleMateria(materia.sigla);
+    } else {
+      subject.classList.add('locked');
+      subject.title = "Prerrequisitos no cumplidos";
+    }
 
-        if (COMPLETED.has(c.id)) {
-          // Desmarcar + cascada
-          COMPLETED.delete(c.id);
-          unapproveCascade(c.id);
-        } else {
-          // Marcar
-          COMPLETED.add(c.id);
-        }
-
-        save();
-        // Felicidades SOLO si a partir de este clic quedó todo completo
-        const allDone = COURSES.every(x => COMPLETED.has(x.id));
-        render();
-        if (allDone) {
-          $("#congratsModal").classList.remove("hidden");
-          setTimeout(() => $("#congratsModal").classList.add("hidden"), 5000);
-        }
-      });
-
-      cont.appendChild(tile);
-    });
+    container.appendChild(subject);
   });
 }
 
-// === Arranque ===
-document.addEventListener("DOMContentLoaded", () => {
-  // Modal siempre oculto al inicio
-  $("#congratsModal").classList.add("hidden");
+// --- Toggle materia ---
+function toggleMateria(sigla) {
+  if (completadas.has(sigla)) {
+    completadas.delete(sigla);
+  } else {
+    completadas.add(sigla);
+  }
+  saveProgress();
+  renderMaterias();
+  updateProgress();
+}
 
-  $("#startBtn").addEventListener("click", () => {
-    const name = $("#studentName").value.trim();
-    const reg  = $("#studentId").value.trim();
-    if (!name || !reg) { alert("Completa Estudiante y Registro"); return; }
+// --- Actualizar progreso ---
+function updateProgress() {
+  const progress = (completadas.size / totalMaterias) * 100;
+  document.getElementById('progress').style.width = `${progress}%`;
+  document.getElementById('status').textContent = `Progreso: ${Math.round(progress)}% (${completadas.size}/${totalMaterias})`;
+}
 
-    STORAGE_KEY = `malla_${reg}`;
-    load();
+// --- Resetear ---
+function resetAll() {
+  if (confirm("¿Estás seguro de reiniciar tu progreso?")) {
+    completadas.clear();
+    saveProgress();
+    renderMaterias();
+    updateProgress();
+  }
+}
 
-    // Mostrar UI
-    $("#loginOverlay").classList.add("hidden");
-    $("#mainHeader").classList.remove("hidden");
-    $("#curriculum").classList.remove("hidden");
-    $("#infoBar").textContent = `Estudiante: ${name} — Registro: ${reg}`;
+// --- Mostrar completadas ---
+function showCompleted() {
+  if (completadas.size === 0) {
+    alert("No has completado ninguna materia aún.");
+  } else {
+    alert("Materias completadas:\n" + Array.from(completadas).join("\n"));
+  }
+}
 
-    render();
-  });
-});
+// --- Helpers ---
+function getColor(tipo) {
+  switch (tipo) {
+    case "especificas": return "var(--especificas)";
+    case "basicas-especificas": return "var(--basicas-especificas)";
+    case "basicas-instrumentales": return "var(--basicas-instrumentales)";
+    case "complementarias": return "var(--complementarias)";
+    default: return "var(--border)";
+  }
+}
+
+function getTipoNombre(tipo) {
+  switch (tipo) {
+    case "especificas": return "ESPECÍFICAS";
+    case "basicas-especificas": return "BÁSICAS ESPECÍFICAS";
+    case "basicas-instrumentales": return "BÁSICAS INSTRUMENTALES";
+    case "complementarias": return "COMPLEMENTARIAS";
+    default: return "OTRO";
+  }
+}
