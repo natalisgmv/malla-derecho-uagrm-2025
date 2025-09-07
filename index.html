@@ -2,56 +2,86 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Malla Interactiva – Derecho UAGRM</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
-  <link href="style.css" rel="stylesheet" />
-  <script defer src="script.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Malla Curricular - Derecho UAGRM 157-1</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Overlay de login -->
-  <div id="loginOverlay">
-    <div class="form-container">
-      <h1>FACULTAD DE CIENCIAS JURÍDICAS, POLÍTICAS, SOCIALES Y RELACIONES INTERNACIONALES</h1>
-      <label>Estudiante:
-        <input type="text" id="studentName" placeholder="Nombre completo" />
-      </label>
-      <label>Registro:
-        <input type="text" id="studentId" placeholder="Número de registro" />
-      </label>
-      <button id="startBtn" type="button">Comenzar</button>
+  <!-- Pantalla de Login -->
+  <div id="loginScreen" class="login-container">
+    <h1>UNIVERSIDAD AUTÓNOMA GABRIEL RENÉ MORENO</h1>
+    <h2>Malla Curricular Interactiva - Derecho 157-1</h2>
+    <div class="input-group">
+      <label for="studentName">Estudiante</label>
+      <input type="text" id="studentName" placeholder="Nombre completo" required>
+    </div>
+    <div class="input-group">
+      <label for="studentId">Número de Registro</label>
+      <input type="text" id="studentId" placeholder="Ej: 123456" required>
+    </div>
+    <button class="login-btn" onclick="login()">Ingresar</button>
+  </div>
+
+  <!-- Contenedor Principal (oculto al inicio) -->
+  <div id="mainScreen" class="main-container">
+    <header>
+      <h1>🎓 Malla Curricular - Derecho UAGRM 157-1</h1>
+      <div class="user-info" id="userInfo"></div>
+    </header>
+
+    <div class="controls">
+      <button onclick="resetAll()">Reiniciar Progreso</button>
+      <button onclick="showCompleted()">Ver Completadas</button>
+      <button onclick="logout()">Cambiar Usuario</button>
+    </div>
+
+    <div class="progress-bar">
+      <div id="progress" class="progress"></div>
+    </div>
+    <div class="status" id="status">Progreso: 0% (0/30)</div>
+
+    <div id="semester-1" class="semester">
+      <div class="semester-title">1° AÑO</div>
+      <div class="subjects" id="subjects-1"></div>
+    </div>
+
+    <div id="semester-2" class="semester">
+      <div class="semester-title">2° AÑO</div>
+      <div class="subjects" id="subjects-2"></div>
+    </div>
+
+    <div id="semester-3" class="semester">
+      <div class="semester-title">3° AÑO</div>
+      <div class="subjects" id="subjects-3"></div>
+    </div>
+
+    <div id="semester-4" class="semester">
+      <div class="semester-title">4° AÑO</div>
+      <div class="subjects" id="subjects-4"></div>
+    </div>
+
+    <div id="semester-5" class="semester">
+      <div class="semester-title">5° AÑO</div>
+      <div class="subjects" id="subjects-5"></div>
+    </div>
+
+    <div class="legend">
+      <div class="legend-item">
+        <span class="legend-color especificas"></span> Específicas
+      </div>
+      <div class="legend-item">
+        <span class="legend-color basicas-especificas"></span> Básicas Específicas
+      </div>
+      <div class="legend-item">
+        <span class="legend-color basicas-instrumentales"></span> Básicas Instrumentales
+      </div>
+      <div class="legend-item">
+        <span class="legend-color complementarias"></span> Complementarias
+      </div>
     </div>
   </div>
 
-  <!-- Modal Felicidades -->
-  <div id="congratsModal" class="hidden">
-    <div class="modal-content">
-      🎉 ¡FELICIDADES! Has aprobado toda la malla curricular.
-    </div>
-  </div>
-
-  <!-- Cabecera -->
-  <header id="mainHeader" class="hidden">
-    <p id="infoBar"></p>
-    <h1>Malla Curricular – Derecho UAGRM</h1>
-  </header>
-
-  <!-- Grilla -->
-  <main id="curriculum" class="hidden">
-    <div class="year-title">Primer Año</div>
-    <div class="tiles" data-year="1"></div>
-
-    <div class="year-title">Segundo Año</div>
-    <div class="tiles" data-year="2"></div>
-
-    <div class="year-title">Tercer Año</div>
-    <div class="tiles" data-year="3"></div>
-
-    <div class="year-title">Cuarto Año</div>
-    <div class="tiles" data-year="4"></div>
-
-    <div class="year-title">Quinto Año</div>
-    <div class="tiles" data-year="5"></div>
-  </main>
+  <script src="script.js"></script>
 </body>
 </html>
