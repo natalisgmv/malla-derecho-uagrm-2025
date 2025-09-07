@@ -71,7 +71,7 @@ function login() {
 
   // Mostrar malla
   document.getElementById('loginScreen').style.display = 'none';
-  document.getElementById('mainScreen').style.display = 'block';
+  document.getElementById('mainScreen').classList.remove('hidden');
 
   renderMaterias();
   updateProgress();
@@ -82,7 +82,7 @@ function logout() {
   saveProgress();
   completadas.clear();
   currentUser = null;
-  document.getElementById('mainScreen').style.display = 'none';
+  document.getElementById('mainScreen').classList.add('hidden');
   document.getElementById('loginScreen').style.display = 'flex';
   document.getElementById('studentName').value = '';
   document.getElementById('studentId').value = '';
