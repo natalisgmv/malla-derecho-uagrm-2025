@@ -3,31 +3,45 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Malla Curricular - Derecho UAGRM 157-1</title>
+  <title>Malla Curricular Interactiva - Derecho UAGRM 157-1</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Pantalla de Login - Estilo UAGRM -->
-  <div id="loginScreen" class="login-container">
-    <div class="uagrm-header">
-      <img src="https://www.uagrm.edu.bo/img/logo-88x707.png" alt="Logo UAGRM" class="uagrm-logo">
-      <h1 class="uagrm-title">UNIVERSIDAD AUTÓNOMA GABRIEL RENÉ MORENO</h1>
+  <!-- Barra Superior -->
+  <div class="top-bar">
+    <div class="top-bar-content">
+      <div class="uagrm-logo-container">
+        <img src="https://www.uagrm.edu.bo/img/logo-88x707.png" alt="Logo UAGRM" class="uagrm-logo">
+      </div>
+      <h1 class="uagrm-title">Universidad Autónoma Gabriel René Moreno</h1>
     </div>
-    <h2 class="uagrm-subtitle">Malla Curricular Interactiva - Derecho 157-1</h2>
-    <div class="input-group">
-      <label for="studentName">Nombre del Estudiante</label>
-      <input type="text" id="studentName" placeholder="Ej: Juan Pérez" required>
-    </div>
-    <div class="input-group">
-      <label for="studentId">Número de Registro</label>
-      <input type="text" id="studentId" placeholder="Ej: 123456" required>
-    </div>
-    <button class="login-btn" onclick="login()">Ingresar</button>
   </div>
 
-  <!-- Contenedor Principal (oculto al inicio) -->
-  <div id="mainScreen" class="main-container">
+  <!-- Contenido Principal -->
+  <div class="main-container">
+    <div class="login-form">
+      <div class="form-header">
+        <h2 class="form-title">Malla Curricular Interactiva</h2>
+        <p class="form-subtitle">Derecho 157-1</p>
+      </div>
+
+      <div class="input-group">
+        <label for="studentName">Nombre del Estudiante</label>
+        <input type="text" id="studentName" placeholder="Ej: Juan Pérez" required>
+      </div>
+
+      <div class="input-group">
+        <label for="studentId">Número de Registro</label>
+        <input type="text" id="studentId" placeholder="Ej: 123456" required>
+      </div>
+
+      <button class="login-btn" onclick="login()">INGRESAR</button>
+    </div>
+  </div>
+
+  <!-- Contenido Principal (oculto al inicio) -->
+  <div id="mainScreen" class="main-container hidden">
     <header>
       <div class="header-content">
         <img src="https://www.uagrm.edu.bo/img/logo-88x707.png" alt="Logo UAGRM" class="header-logo">
