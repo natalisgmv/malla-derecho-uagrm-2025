@@ -437,3 +437,49 @@ button:hover {
     height: 50px;
   }
 }
+/* --- Estilo para el logo vertical uagrm-escudo_886x1130.png --- */
+.uagrm-logo {
+  height: 80px;
+  width: auto;
+  object-fit: contain;
+  margin-right: 15px;
+}
+
+.header-logo {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+}
+
+.uagrm-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 3px solid var(--primary);
+  flex-wrap: wrap;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .uagrm-logo {
+    height: 60px;
+  }
+  .header-logo {
+    height: 50px;
+  }
+  .uagrm-title {
+    font-size: 1.3rem !important;
+    text-align: center;
+  }
+}
