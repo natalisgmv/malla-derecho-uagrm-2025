@@ -8,40 +8,25 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Barra Superior -->
- 
-  <div class="top-bar">
-    <div class="top-bar-content">
-      <div class="uagrm-logo-container">
-        <img src="logo-88x707.png" alt="Logo UAGRM" class="uagrm-logo">
-      </div>
-      <h1 class="uagrm-title">Universidad Autónoma Gabriel René Moreno</h1>
+  <!-- Pantalla de Login -->
+  <div id="loginScreen" class="login-container">
+    <div class="uagrm-header">
+      <img src="logo-88x707.png" alt="Logo UAGRM" class="uagrm-logo">
+      <h1 class="uagrm-title">UNIVERSIDAD AUTÓNOMA GABRIEL RENÉ MORENO</h1>
     </div>
+    <h2 class="uagrm-subtitle">Malla Curricular Interactiva - Derecho 157-1</h2>
+    <div class="input-group">
+      <label for="studentName">Nombre del Estudiante</label>
+      <input type="text" id="studentName" placeholder="Ej: Juan Pérez" required>
+    </div>
+    <div class="input-group">
+      <label for="studentId">Número de Registro</label>
+      <input type="text" id="studentId" placeholder="Ej: 123456" required>
+    </div>
+    <button class="login-btn" onclick="login()">INGRESAR</button>
   </div>
 
-  <!-- Contenido Principal -->
-  <div class="main-container">
-    <div class="login-form">
-      <div class="form-header">
-        <h2 class="form-title">Malla Curricular Interactiva</h2>
-        <p class="form-subtitle">Derecho 157-1</p>
-      </div>
-
-      <div class="input-group">
-        <label for="studentName">Nombre del Estudiante</label>
-        <input type="text" id="studentName" placeholder="Ej: Juan Pérez" required>
-      </div>
-
-      <div class="input-group">
-        <label for="studentId">Número de Registro</label>
-        <input type="text" id="studentId" placeholder="Ej: 123456" required>
-      </div>
-
-      <button class="login-btn" onclick="login()">INGRESAR</button>
-    </div>
-  </div>
-
-  <!-- Contenido Principal (oculto al inicio) -->
+  <!-- Contenedor Principal (oculto al inicio) -->
   <div id="mainScreen" class="main-container hidden">
     <header>
       <div class="header-content">
@@ -105,6 +90,6 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script type="text/javascript" src="script.js"></script>
 </body>
 </html>
